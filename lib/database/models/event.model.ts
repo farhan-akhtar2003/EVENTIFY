@@ -1,7 +1,9 @@
+// MODEL FOR EVENTSS.
 import { Document, Schema, model, models } from "mongoose";
 
 export interface IEvent extends Document {
-  _id: string;
+  // TYPESCRIPT FUNCTION
+  _id: string;// _id comes from mongoose automatically....
   title: string;
   description?: string;
   location?: string;
@@ -12,8 +14,8 @@ export interface IEvent extends Document {
   price: string;
   isFree: boolean;
   url?: string;
-  category: { _id: string, name: string }
-  organizer: { _id: string, firstName: string, lastName: string }
+  category: { _id: string; name: string }; // OBJECT
+  organizer: { _id: string; firstName: string; lastName: string }; // OBJECT
 }
 
 const EventSchema = new Schema({

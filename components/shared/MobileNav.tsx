@@ -1,3 +1,5 @@
+// SHEET AND SEPARATOR IS A SHADECN COMPONENT FOR SIDEBARS...SO INSTALL SHEET SHADECN COMPONENT
+// CODE HAS BEEN COPIED TAKEN FROM SHADECN DOCS...
 import {
   Sheet,
   SheetContent,
@@ -16,6 +18,7 @@ const MobileNav = () => {
     <nav className="md:hidden">
       <Sheet>
         <SheetTrigger className="align-middle">
+          {/* SYMBOL FOR SIDEBAR */}
           <Image 
             src="/assets/icons/menu.svg"
             alt="menu"
@@ -31,12 +34,13 @@ const MobileNav = () => {
             width={128}
             height={38}
           />
+          {/* SEPARATOR SEPARATE HEADING WITH NAV ITEMS... */}
           <Separator className="border border-gray-50" />
           <NavItems />
         </SheetContent>
       </Sheet>
     </nav>
-  )
+  ) 
 }
 
 export default MobileNav

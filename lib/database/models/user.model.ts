@@ -1,3 +1,4 @@
+// MODEL FOR USERS...
 import { Schema, model, models } from "mongoose";
 
 const UserSchema = new Schema({
@@ -9,6 +10,6 @@ const UserSchema = new Schema({
   photo: { type: String, required: true },
 })
 
-const User = models.User || model('User', UserSchema);
+const User = models.User || model('User', UserSchema);// IF SCHEMA IS ALREADY PRESENT OR WE HAVE TO CREATE NEW MODEL OF USERSCHEMA
 
 export default User;

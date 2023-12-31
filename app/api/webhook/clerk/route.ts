@@ -1,3 +1,4 @@
+// CODE COPIED FROM CLERK WEBHOOK DOCS...
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
@@ -54,13 +55,14 @@ export async function POST(req: Request) {
   const { id } = evt.data;
   const eventType = evt.type;
  
+  // THIS PART IS BEING NEWLY WRITTEN NOT COPIED FROM DOCS..,THEN GO TO USER.ACTION.TS AND TYPES>INDEX.TS 
   if(eventType === 'user.created') {
     const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
 
     const user = {
       clerkId: id,
       email: email_addresses[0].email_address,
-      username: username!,
+      username: username!,// ! BCZ OF TYPESCRIPT ERROR 
       firstName: first_name,
       lastName: last_name,
       photo: image_url,

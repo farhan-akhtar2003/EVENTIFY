@@ -1,3 +1,4 @@
+// NAVBAR ITEMS...
 export const headerLinks = [
   {
     label: 'Home',

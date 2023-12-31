@@ -1,3 +1,5 @@
+//COPIED FROM ASSETS README.MD
+
 // ====== USER PARAMS
 export type CreateUserParams = {
   clerkId: string

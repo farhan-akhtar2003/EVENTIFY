@@ -1,7 +1,9 @@
+// CUSTOM ERROR HANDLING FUNCTIONS
+// CODE TAKEN FROM SHADECN AND CHATGPT...
 import { type ClassValue, clsx } from 'clsx'
 
 import { twMerge } from 'tailwind-merge'
-import qs from 'query-string'
+import qs from 'query-string' // npm install query-string
 
 import { UrlQueryParams, RemoveUrlQueryParams } from '@/types'
 
@@ -87,7 +89,23 @@ export function removeKeysFromQuery({ params, keysToRemove }: RemoveUrlQueryPara
   )
 }
 
+// export const handleError = (error: unknown) => {
+//   console.error(error);
+//   throw new Error(typeof error === 'string' ? error : JSON.stringify(error))
+// };
 export const handleError = (error: unknown) => {
-  console.error(error)
-  throw new Error(typeof error === 'string' ? error : JSON.stringify(error))
-}
+  console.error(error);
+
+  // Create a more descriptive error message
+  const errorMessage =
+    typeof error === "string"
+      ? error
+      : typeof error === "object" && error !== null
+      ? JSON.stringify(error)
+      : "Unknown error";
+
+  // Include the error message in the thrown Error object
+  //throw new Error(`Unhandled error: ${errorMessage}`);
+};
+
+

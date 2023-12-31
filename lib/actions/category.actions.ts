@@ -5,6 +5,7 @@ import { handleError } from "../utils"
 import { connectToDatabase } from "../database"
 import Category from "../database/models/category.model"
 
+// CREATE CATEGORY
 export const createCategory = async ({ categoryName }: CreateCategoryParams) => {
   try {
     await connectToDatabase();
@@ -17,6 +18,7 @@ export const createCategory = async ({ categoryName }: CreateCategoryParams) => 
   }
 }
 
+// GET ALL CATEGORIES
 export const getAllCategories = async () => {
   try {
     await connectToDatabase();

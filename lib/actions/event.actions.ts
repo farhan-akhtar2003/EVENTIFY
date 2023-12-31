@@ -27,7 +27,7 @@ const populateEvent = (query: any) => {
     .populate({ path: 'category', model: Category, select: '_id name' })
 }
 
-// CREATE
+// CREATE EVENT
 export async function createEvent({ userId, event, path }: CreateEventParams) {
   try {
     await connectToDatabase()

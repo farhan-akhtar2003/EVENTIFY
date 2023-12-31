@@ -12,8 +12,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "PIC-POST",
-  description: "POST YOUR FAV PICS ....",
+  title: "EVENTIFY",
+  description: "HANDLE YOUR EVENTS ....",
   icons: {
     icon: "/assets/images/logo.svg", // LOGO TO BE PUT IN UPPER BROWSER SYMBOL WITH TITLE
   },

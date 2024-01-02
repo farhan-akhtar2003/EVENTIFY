@@ -28,9 +28,9 @@ export default function RootLayout({
   return (
     // wrap your app or all pages under one authentication here by the clerk
     <ClerkProvider
-      appearance={{
-        baseTheme: [neobrutalism],
-      }}
+    // appearance={{
+    //   baseTheme: [neobrutalism],
+    // }}
     >
       <html lang="en">
         <body className={poppins.variable}>{children}</body>

@@ -1,34 +1,47 @@
-'use client'
+//YOU HAVE TO INSTALL UPLOADTHING FOR FILES UPLOADING npm install uploadthing @uploadthing/react
+"use client";
 
-import { useCallback, Dispatch, SetStateAction } from 'react'
-import type { FileWithPath } from '@uploadthing/react'
-import { useDropzone } from '@uploadthing/react/hooks'
-import { generateClientDropzoneAccept } from 'uploadthing/client'
-
-import { Button } from '@/components/ui/button'
-import { convertFileToUrl } from '@/lib/utils'
+import { useCallback, Dispatch, SetStateAction } from "react";
+import type { FileWithPath } from "@uploadthing/react";
+import { useDropzone } from "@uploadthing/react/hooks";
+import { generateClientDropzoneAccept } from "uploadthing/client";
+ 
+import { Button } from "@/components/ui/button";
+import { convertFileToUrl } from "@/lib/utils";
 
 type FileUploaderProps = {
-  onFieldChange: (url: string) => void
-  imageUrl: string
-  setFiles: Dispatch<SetStateAction<File[]>>
-}
+  onFieldChange: (url: string) => void;
+  imageUrl: string;
+  setFiles: Dispatch<SetStateAction<File[]>>; // TAKE IN A FILE && MODIFY IT
+};
 
-export function FileUploader({ imageUrl, onFieldChange, setFiles }: FileUploaderProps) {
+//DECLARE PROPS
+export function FileUploader({
+  imageUrl,
+  onFieldChange,
+  setFiles,
+}: FileUploaderProps) {
+
+  // ONDROP SO WE KNOW WHEN A FILE IS DROPPED DRAG AND DROP
+
+  
   const onDrop = useCallback((acceptedFiles: FileWithPath[]) => {
-    setFiles(acceptedFiles)
-    onFieldChange(convertFileToUrl(acceptedFiles[0]))
-  }, [])
+    setFiles(acceptedFiles);
+    onFieldChange(convertFileToUrl(acceptedFiles[0]));// WHEN FILE CHANGES WE CHANGE THE URL TOO
+  }, []);
 
+  //WE USE DROPZONE RATHER THAN BUTTON FOR FILE UPLOAD VISIT UPLOADTHING WEBSITE  
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: 'image/*' ? generateClientDropzoneAccept(['image/*']) : undefined,
-  })
+    accept: "image/*" ? generateClientDropzoneAccept(["image/*"]) : undefined,// ONLY ACCEPT IMAGE ARRAY
+  });
 
   return (
     <div
       {...getRootProps()}
-      className="flex-center bg-dark-3 flex h-72 cursor-pointer flex-col overflow-hidden rounded-xl bg-grey-50">
+      className="flex-center bg-dark-3 flex h-72 cursor-pointer flex-col overflow-hidden rounded-xl bg-grey-50"
+    >
+      {/* INPUT THAT GONNA ACCEPT IMAGESS */}
       <input {...getInputProps()} className="cursor-pointer" />
 
       {imageUrl ? (
@@ -43,7 +56,12 @@ export function FileUploader({ imageUrl, onFieldChange, setFiles }: FileUploader
         </div>
       ) : (
         <div className="flex-center flex-col py-5 text-grey-500">
-          <img src="/assets/icons/upload.svg" width={77} height={77} alt="file upload" />
+          <img
+            src="/assets/icons/upload.svg"
+            width={77}
+            height={77}
+            alt="file upload"
+          />
           <h3 className="mb-2 mt-2">Drag photo here</h3>
           <p className="p-medium-12 mb-4">SVG, PNG, JPG</p>
           <Button type="button" className="rounded-full">
@@ -52,5 +70,5 @@ export function FileUploader({ imageUrl, onFieldChange, setFiles }: FileUploader
         </div>
       )}
     </div>
-  )
+  );
 }

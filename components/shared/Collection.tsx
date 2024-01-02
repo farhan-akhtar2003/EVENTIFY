@@ -3,8 +3,9 @@ import React from "react";
 import Card from "./Card";
 import Pagination from "./Pagination";
 
+// DEFINE COLLECTIONPROPS 
 type CollectionProps = {
-  data: IEvent[];
+  data: IEvent[]; //FULL SCHEMA OF EVENTS
   emptyTitle: string;
   emptyStateSubtext: string;
   limit: number;
@@ -34,7 +35,7 @@ const Collection = ({
 
               return (
                 <li key={event._id} className="flex justify-center">
-                  <Card
+                  <Card // COMES FROM COMPONENTS>SHARED
                     event={event}
                     hasOrderLink={hasOrderLink}
                     hidePrice={hidePrice}
@@ -45,7 +46,7 @@ const Collection = ({
           </ul>
 
           {totalPages > 1 && (
-            <Pagination
+            <Pagination //COMES FROM COMPONENTS>SHARED
               urlParamName={urlParamName}
               page={page}
               totalPages={totalPages}

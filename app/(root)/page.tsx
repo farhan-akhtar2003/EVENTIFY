@@ -1,25 +1,25 @@
-// GLOBAL PAGE .TSX  HERO PAGE I.E HOME PAGE 
-import CategoryFilter from '@/components/shared/CategoryFilter';
-import Collection from '@/components/shared/Collection'
-import Search from '@/components/shared/Search';
-import { Button } from '@/components/ui/button'
-import { getAllEvents } from '@/lib/actions/event.actions';
-import { SearchParamProps } from '@/types';
-import Image from 'next/image'
-import Link from 'next/link'
+// GLOBAL PAGE .TSX  HERO PAGE I.E HOME PAGE
+import CategoryFilter from "@/components/shared/CategoryFilter";
+import Collection from "@/components/shared/Collection";
+import Search from "@/components/shared/Search";
+import { Button } from "@/components/ui/button";
+import { getAllEvents } from "@/lib/actions/event.actions";
+import { SearchParamProps } from "@/types";
+import Image from "next/image";
+import Link from "next/link";
 
 export default async function Home({ searchParams }: SearchParamProps) {
   const page = Number(searchParams?.page) || 1;
-  const searchText = (searchParams?.query as string) || '';
-  const category = (searchParams?.category as string) || '';
+  const searchText = (searchParams?.query as string) || "";
+  const category = (searchParams?.category as string) || "";
 
   const events = await getAllEvents({
     query: searchText,
     category,
     page,
-    limit: 6
-  })
-
+    limit: 6,
+  });
+// CONSOLE.LOG EVENTS
   return (
     // INTRODUCTION SECTION
     <>
@@ -27,16 +27,19 @@ export default async function Home({ searchParams }: SearchParamProps) {
         {/* md - medium devices || 2xl - too large devices wrapper align components with navbar here */}
         <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
           <div className="flex flex-col justify-center gap-8">
-            <h1 className="h1-bold">Host, Connect, Celebrate: Your Events, Our Platform!</h1>
-            <p className="p-regular-20 md:p-regular-24">Book and learn helpful tips from 3,168+ mentors in world-class companies with our global community.</p>
+            <h1 className="h1-bold">
+              Host, Connect, Celebrate: Your Events, Our Platform!
+            </h1>
+            <p className="p-regular-20 md:p-regular-24">
+              Book and learn helpful tips from 3,168+ mentors in world-class
+              companies with our global community.
+            </p>
             <Button size="lg" asChild className="button w-full sm:w-fit">
-              <Link href="#events">
-                Explore Now
-              </Link>
+              <Link href="#events">Explore Now</Link>
             </Button>
           </div>
 
-          <Image 
+          <Image
             src="/assets/images/hero.png"
             alt="hero"
             width={1000}
@@ -44,27 +47,32 @@ export default async function Home({ searchParams }: SearchParamProps) {
             className="max-h-[70vh] object-contain object-center 2xl:max-h-[50vh]"
           />
         </div>
-      </section> 
+      </section>
 
+      <section
+        id="events"
+        className="wrapper my-8 flex flex-col gap-8 md:gap-12"
+      >
+        <h2 className="h2-bold">
+          Trust by <br /> Thousands of Events
+        </h2>
 
-      <section id="events" className="wrapper my-8 flex flex-col gap-8 md:gap-12">
-        <h2 className="h2-bold">Trust by <br /> Thousands of Events</h2>
-
+        {/* VIEW NEW EVENTSS */}
         <div className="flex w-full flex-col gap-5 md:flex-row">
           <Search />
           <CategoryFilter />
         </div>
-{/* EVENTS SECTION */}
-        <Collection 
-          data={events?.data}// eventss
+        {/* EVENTS SECTION COLLECTION CATEGORYFILTER COMES FROM COMPONENTS>SHARED*/}
+        <Collection
+          data={events?.data} // eventss
           emptyTitle="No Events Found"
           emptyStateSubtext="Come back later"
           collectionType="All_Events"
           limit={6}
-          page={page}//pagination 
-          totalPages={events?.totalPages}
+          page={page} //pagination CURRENT PAGE NO
+          totalPages={events?.totalPages} // TOTAL PAGESS
         />
       </section>
     </>
-  )
+  );
 }

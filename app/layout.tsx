@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { neobrutalism } from "@clerk/themes";
 
 import "./globals.css";
 
@@ -19,10 +20,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({children,}: {children: React.ReactNode;}){
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     // wrap your app or all pages under one authentication here by the clerk
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: [neobrutalism],
+      }}
+    >
       <html lang="en">
         <body className={poppins.variable}>{children}</body>
       </html>

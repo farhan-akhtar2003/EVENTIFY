@@ -1,3 +1,4 @@
+// WORKS SAME AS SEARCH BUT USE SELECT RATHER THAN INPUT COMPONENTS FROM SHADECN
 "use client"
 
 import {
@@ -13,6 +14,7 @@ import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+// COPIED FROM SEARCH COMPONENT HERE
 const CategoryFilter = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const router = useRouter();
@@ -48,6 +50,7 @@ const CategoryFilter = () => {
   }
 
   return (
+    // COPIED FROM SHADECN HERE
     <Select onValueChange={(value: string) => onSelectCategory(value)}>
       <SelectTrigger className="select-field">
         <SelectValue placeholder="Category" />

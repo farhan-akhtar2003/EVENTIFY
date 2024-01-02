@@ -11,8 +11,8 @@ const Search = ({ placeholder = 'Search title...' }: { placeholder?: string }) =
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
+  useEffect(() => {// RE TRIGGERS EVERYTIME THE QUERY CHANGES TO SEARCH
+    const delayDebounceFn = setTimeout(() => {// DEBOUNCE FUNCTION WILL ONLY TRIGGER AFTER A SPECIFIC TIMEOUT 
       let newUrl = '';
 
       if(query) {
@@ -32,7 +32,7 @@ const Search = ({ placeholder = 'Search title...' }: { placeholder?: string }) =
     }, 300)
 
     return () => clearTimeout(delayDebounceFn);
-  }, [query, searchParams, router])
+  }, [query, searchParams, router])// RE TRIGGER WHEN ANY OF THE 3 CHANGES
 
   return (
     <div className="flex-center min-h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
